@@ -1,0 +1,1 @@
+export const LIST_INIT = 'LIST_INIT';
