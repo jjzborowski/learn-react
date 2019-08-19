@@ -4,20 +4,20 @@
   position: fixed;
   top: 0;
   width: 100vw;
-}
 
-.success {
-  background-color: rgba(green, 0.5);
-}
+  &.success {
+    background-color: rgba(green, 0.5);
+  }
 
-.info {
-  background-color: rgba(blue, 0.5);
-}
+  &.info {
+    background-color: rgba(blue, 0.5);
+  }
 
-.warning {
-  background-color: rgba(orange, 0.5);
-}
+  &.warning {
+    background-color: rgba(orange, 0.5);
+  }
 
-.error {
-  background-color: rgba(red, 0.5);
+  &.error {
+    background-color: rgba(red, 0.5);
+  }
 }

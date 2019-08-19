@@ -1,0 +1,24 @@
+.button {
+    border: {
+        color: #000000;
+        radius: 4px;
+        style: solid;
+        width: 1px;
+    }
+    color: white;
+    margin: 2px 4px;
+    padding: 4px 8px;
+
+    &.primary {
+        background-color: rebeccapurple;
+    }
+
+    &.secondary {
+        background-color: mediumpurple;
+    }
+
+    &.ghost {
+        background-color: transparent;
+        border: none;
+    }
+}

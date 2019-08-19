@@ -1,22 +1,20 @@
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { alertHideMessageAction } from 'src/actions/alert.actions';
+import { alertHideAction } from 'src/actions/alert.actions';
 import {
-    getAlertMessage,
+    getAlertContent,
     getAlertType,
 } from 'src/selectors/alert.selectors';
+import Button from 'src/ui/Button/Button';
 import styles from './Alert.scss';
 
-const Alert = ({
-    alertHideMessage, message, type,
-}) => {
+const Alert = ({ onCloseHandler, content, type }) => {
     const [ timer, setTimer ] = useState(null);
 
     // useEffect(() => {
     //     setTimer(setTimeout(() => {
-    //         alertHideMessage();
+    //         onCloseHandler();
     //     }, alertConfig.delay));
     //
     //     return clearTimeout(timer);
@@ -24,7 +22,7 @@ const Alert = ({
 
     const clickHandler = () => {
         clearTimeout(timer);
-        alertHideMessage();
+        onCloseHandler();
     };
 
     return (
@@ -34,26 +32,25 @@ const Alert = ({
             <i className="fa fa-check-circle" />
             <i className="fa fa-info-circle" />
             <span className={ classNames(styles.icon, styles[type]) } />
-            { message }
-            <button onClick={clickHandler}>X</button>
+            { content }
+            <Button
+                onClickHandler={ clickHandler }
+                label="X"
+                type="ghost"
+            />
         </div>
     );
 };
 
-Alert.propTypes = {
-    message: PropTypes.string,
-    type: PropTypes.string,
-};
-
 const mapStateToProps = state => (
     {
-        message: getAlertMessage(state),
+        content: getAlertContent(state),
         type: getAlertType(state),
     }
 );
 
 const mapDispatchToProps = {
-    alertHideMessage: alertHideMessageAction,
+    onCloseHandler: alertHideAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Alert);

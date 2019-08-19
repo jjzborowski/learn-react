@@ -1,17 +1,17 @@
 import * as actionTypes from 'src/actionTypes/alert.actionTypes';
 
-export const alertHideMessageAction = () => dispatch => {
+export const alertDisplayAction = (type, content) => dispatch => {
     dispatch({
-        type: actionTypes.ALERT_HIDE_MESSAGE,
+        type: actionTypes.ALERT_DISPLAY,
+        payload: {
+            content,
+            type,
+        },
     });
 };
 
-export const alertDisplayMessageAction = (type, message) => dispatch => {
+export const alertHideAction = () => dispatch => {
     dispatch({
-        type: actionTypes.ALERT_DISPLAY_MESSAGE,
-        payload: {
-            message,
-            type,
-        },
+        type: actionTypes.ALERT_HIDE,
     });
 };

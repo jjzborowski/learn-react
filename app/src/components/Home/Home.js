@@ -1,26 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { alertDisplayAction } from 'src/actions/alert.actions';
+import Button from 'src/ui/Button/Button';
 
-import { alertDisplayMessageAction } from 'src/actions/alert.actions';
-
-const Home = ({
-    alertDisplayMessage,
-}) => {
+const Home = ({ alertDisplayMessage }) => {
     const onClickHandler = () => alertDisplayMessage('info', 'test message');
     const onClickHandler2 = () => alertDisplayMessage('warning', 'test message 2');
     return (
         <div>
             <h1>Home</h1>
-            <button onClick={onClickHandler}>test alert</button>
-            <button onClick={onClickHandler2}>test alert</button>
+            <Button
+                onClickHandler={ onClickHandler }
+                label="test alert"
+            />
+            <Button
+                onClickHandler={ onClickHandler2 }
+                label="test alert"
+            />
         </div>
     );
 };
 
-Home.propTypes = {};
-
 const mapDispatchToProps = {
-    alertDisplayMessage: alertDisplayMessageAction,
+    alertDisplayMessage: alertDisplayAction,
 };
 
 export default connect(null, mapDispatchToProps)(Home);

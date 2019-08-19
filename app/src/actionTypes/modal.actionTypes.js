@@ -1,0 +1,3 @@
+export const MODAL_DISPLAY = 'MODAL_DISPLAY';
+export const MODAL_HIDE = 'MODAL_CLOSE';
+export const MODAL_SET_CONTENT = 'MODAL_SET_CONTENT';

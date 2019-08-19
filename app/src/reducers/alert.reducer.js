@@ -4,21 +4,21 @@ import { handleActions } from 'redux-actions';
 import * as actionTypes from 'src/actionTypes/alert.actionTypes';
 
 const alertDisplayReducer = handleActions({
-    [actionTypes.ALERT_DISPLAY_MESSAGE]: () => true,
-    [actionTypes.ALERT_HIDE_MESSAGE]: () => false,
+    [actionTypes.ALERT_DISPLAY]: () => true,
+    [actionTypes.ALERT_HIDE]: () => false,
 }, false);
 
-const alertMessageReducer = handleActions({
-    [actionTypes.ALERT_DISPLAY_MESSAGE]: (state, { payload }) => payload.message
+const alertContentReducer = handleActions({
+    [actionTypes.ALERT_DISPLAY]: (state, { payload }) => payload.content,
 }, '');
 
 const alertTypeReducer = handleActions({
-    [actionTypes.ALERT_DISPLAY_MESSAGE]: (state, { payload }) => payload.type,
+    [actionTypes.ALERT_DISPLAY]: (state, { payload }) => payload.type,
 }, '');
 
 const alertReducer = combineReducers({
     display: alertDisplayReducer,
-    message: alertMessageReducer,
+    content: alertContentReducer,
     type: alertTypeReducer,
 });
 

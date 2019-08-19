@@ -1,39 +1,21 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getMenu } from 'src/selectors/menu.selectors';
+import menu from 'src/constants/menu';
 import styles from './Menu.scss';
 
-const Menu = ({ items }) => {
-    return (
-        <nav className={ styles.menu }>
-            { Object.values(items)
-                .map(item => (
-                    <span
-                        key={ item.id }
-                        className={ styles.menuItem }
-                    >
-                        <Link to={ item.path }>
-                            { item.label }
-                        </Link>
-                    </span>
-                )) }
-        </nav>
-    );
-};
-
-Menu.propTypes = {
-    items: PropTypes.shape({
-        label: PropTypes.string,
-        path: PropTypes.string,
-    }),
-};
-
-const mapStateToProps = state => (
-    {
-        items: getMenu(state),
-    }
+const Menu = () => (
+    <div className={ styles.menu }>
+        { menu.map(item => (
+            <nav
+                key={ item.id }
+                className={ styles.item }
+            >
+                <Link to={ item.path }>
+                    { item.label }
+                </Link>
+            </nav>
+        )) }
+    </div>
 );
 
-export default connect(mapStateToProps)(Menu);
+export default Menu;

@@ -1,23 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import menu from 'src/constants/menu';
 
-import Home from 'src/components/Home/Home';
-import List from 'src/components/List/List';
-
-const Routes = () => {
-    return (
-        <div>
-            <Route
-                path="/"
-                exact
-                component={ Home }
-            />
-            <Route
-                path="/list"
-                component={ List }
-            />
-        </div>
-    );
-};
+const Routes = () => menu.map(route => (
+    <Route
+        key={ route.id }
+        path={ route.path }
+        exact
+        component={ route.component }
+    />
+));
 
 export default Routes;
