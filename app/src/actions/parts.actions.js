@@ -1,18 +1,18 @@
-import * as actionTypes from 'src/actionTypes/elementsList.actionTypes';
 import * as modalActionTypes from 'src/actionTypes/modal.actionTypes';
+import * as actionTypes from 'src/actionTypes/parts.actionTypes';
 
-export const elementsListInitAction = data => dispatch => {
+export const partsListInitAction = data => dispatch => {
     dispatch({
-        type: actionTypes.ELEMENTS_LIST_INIT,
+        type: actionTypes.PARTS_LIST_INIT,
         payload: {
             data,
         },
     });
 };
 
-export const elementsListAddAction = data => dispatch => {
+export const partsListAddAction = data => dispatch => {
     dispatch({
-        type: actionTypes.ELEMENTS_LIST_ADD,
+        type: actionTypes.PARTS_LIST_ADD,
         payload: {
             data,
         },

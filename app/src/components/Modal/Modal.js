@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { modalHideAction } from 'src/actions/modal.actions';
-import ElementsListAddModal
-    from 'src/components/ElementsListAddModal/ElementsListAddModal';
+import ModalAddPart from 'src/components/ModalAddPart/ModalAddPart';
+import ModalAddProject from 'src/components/ModalAddProject/ModalAddProject';
 import { getModalContent } from 'src/selectors/modal.selectors';
 import styles from './Modal.scss';
 
 const Modal = ({ content, onCloseHandler }) => {
     const contentTemplates = {
-        ElementsListAddModal:
-            <ElementsListAddModal onCloseHandler={ onCloseHandler } />,
+        ModalAddPart: <ModalAddPart onCloseHandler={ onCloseHandler } />,
+        ModalAddProject: <ModalAddProject onCloseHandler={ onCloseHandler } />,
     };
 
     return (

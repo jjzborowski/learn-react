@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { modalDisplayAction } from 'src/actions/modal.actions';
-import List from 'src/components/ElementsList/ElementsList';
+import List from 'src/components/PartsList/PartsList';
 import Button from 'src/ui/Button/Button';
 import styles from './Inventory.scss';
 
@@ -16,7 +16,7 @@ const Inventory = ({ onClickHandler }) => (
 );
 
 const mapDispatchToProps = {
-    onClickHandler: () => modalDisplayAction('ElementsListAddModal'),
+    onClickHandler: () => modalDisplayAction('ModalAddPart'),
 };
 
 export default connect(null, mapDispatchToProps)(Inventory);

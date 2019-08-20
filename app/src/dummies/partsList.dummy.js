@@ -1,12 +1,13 @@
-export const elementsListDummy = {
+export const partsListDummy = {
     1: {
         id: 1,
         info: {
-            title: 'test title 1',
+            number: 1,
+            name: 'test name 1',
             description: 'test description 1',
         },
         image: {
-            alt: 'test title 1',
+            alt: 'test name 1',
             path: 'src/dummies/image2.png',
         },
         quantity: 0,
@@ -17,11 +18,12 @@ export const elementsListDummy = {
     2: {
         id: 2,
         info: {
-            title: 'test title 2',
+            number: 2,
+            name: 'test name 2',
             description: 'test description 2',
         },
         image: {
-            alt: 'test title 1',
+            alt: 'test name 1',
             path: 'src/dummies/image2.png',
         },
         quantity: 0,
@@ -32,11 +34,12 @@ export const elementsListDummy = {
     3: {
         id: 3,
         info: {
-            title: 'test title 3',
+            number: 3,
+            name: 'test name 3',
             description: 'test description 3',
         },
         image: {
-            alt: 'test title 1',
+            alt: 'test name 1',
             path: 'src/dummies/image1.png',
         },
         quantity: 0,
@@ -47,11 +50,12 @@ export const elementsListDummy = {
     4: {
         id: 4,
         info: {
-            title: 'test title 4',
+            number: 4,
+            name: 'test name 4',
             description: 'test description 4',
         },
         image: {
-            alt: 'test title 1',
+            alt: 'test name 1',
             path: 'src/dummies/image1.png',
         },
         quantity: 0,
@@ -62,11 +66,12 @@ export const elementsListDummy = {
     5: {
         id: 5,
         info: {
-            title: 'test title 5',
+            number: 5,
+            name: 'test name 5',
             description: 'test description 5',
         },
         image: {
-            alt: 'test title 1',
+            alt: 'test name 1',
             path: 'src/dummies/image2.png',
         },
         quantity: 0,

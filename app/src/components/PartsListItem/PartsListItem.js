@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './ElementsListItem.scss';
+import styles from './PartsListItem.scss';
 
-const ElementsListItem = ({ info, image, quantity, available, used }) => (
+const PartsListItem = ({ info, image, quantity, available, used }) => (
     <div className={ styles.item }>
         <div className={ styles.image }>
             <img
@@ -10,8 +10,11 @@ const ElementsListItem = ({ info, image, quantity, available, used }) => (
             />
         </div>
         <div className={ styles.info }>
-            <div className={ styles.title }>
-                { info.title }
+            <div className={ styles.number }>
+                { info.number }
+            </div>
+            <div className={ styles.name }>
+                { info.name }
             </div>
             <div className={ styles.description }>
                 { info.description }
@@ -34,4 +37,4 @@ const ElementsListItem = ({ info, image, quantity, available, used }) => (
     </div>
 );
 
-export default ElementsListItem;
+export default PartsListItem;

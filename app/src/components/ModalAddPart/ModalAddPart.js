@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { elementsListAddAction } from 'src/actions/elementsList.actions';
+import { partsListAddAction } from 'src/actions/parts.actions';
 import modalStyles from 'src/components/Modal/Modal.scss';
 import Button from 'src/ui/Button/Button';
 import uuid from 'uuid';
 
-const ElementsListAddModal = ({ onSaveHandler, onCloseHandler }) => {
+const ModalAddPart = ({ onSaveHandler, onCloseHandler }) => {
     const id = uuid();
-    const mockElement = {
+    const mockPart = {
         id: id,
         info: {
-            title: `test title ${ id }`,
+            name: `test name ${ id }`,
             description: `test description ${ id }`,
         },
         image: {
-            alt: `test title ${ id }`,
+            alt: `test name ${ id }`,
         },
         quantity: 0,
         available: 0,
@@ -24,10 +24,10 @@ const ElementsListAddModal = ({ onSaveHandler, onCloseHandler }) => {
 
     return (
         <div>
-            Add
+            Add part
             <div className={ modalStyles.footer }>
                 <Button
-                    onClickHandler={ () => onSaveHandler(mockElement) }
+                    onClickHandler={ () => onSaveHandler(mockPart) }
                     label="Save"
                 />
                 <Button
@@ -41,7 +41,7 @@ const ElementsListAddModal = ({ onSaveHandler, onCloseHandler }) => {
 };
 
 const mapDispatchToProps = {
-    onSaveHandler: elementsListAddAction,
+    onSaveHandler: partsListAddAction,
 };
 
-export default connect(null, mapDispatchToProps)(ElementsListAddModal);
+export default connect(null, mapDispatchToProps)(ModalAddPart);

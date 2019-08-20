@@ -1,0 +1,45 @@
+.item {
+    border: {
+        color: black;
+        radius: 4px;
+        style: solid;
+        width: 1px;
+    }
+    display: flex;
+    justify-content: stretch;
+    margin-bottom: 4px;
+
+    & > * {
+        padding: 8px;
+    }
+
+    & > .image {
+        height: 64px;
+        width: 64px;
+    }
+
+    .info {
+        flex: 1 0 auto;
+
+        .number {
+
+        }
+
+        .name {
+
+        }
+
+        .description {
+
+        }
+    }
+
+    .quantity {
+        width: 240px;
+
+        & > div {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

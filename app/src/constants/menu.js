@@ -1,6 +1,6 @@
-import Home from 'src/components/Home/Home';
-import Inventory from 'src/components/Inventory/Inventory';
-import ProjectsList from 'src/components/ProjectsList/ProjectsList';
+import Home from 'src/pages/Home/Home';
+import Inventory from 'src/pages/Inventory/Inventory';
+import Projects from 'src/pages/Projects/Projects';
 
 const menu = [
     {
@@ -19,7 +19,7 @@ const menu = [
         id: 2,
         label: 'Projects',
         path: '/projects',
-        component: ProjectsList,
+        component: Projects,
     },
 ];
 

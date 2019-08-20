@@ -44,7 +44,7 @@ module.exports = {
                         options: {
                             importLoaders: 1,
                             modules: {
-                                localIdentName: '[local]'
+                                localIdentName: '[local]',
                             },
                         },
                     }, // translates CSS into CommonJS

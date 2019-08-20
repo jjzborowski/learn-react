@@ -13,17 +13,9 @@
         padding: 8px;
     }
 
-    .image {
-        display: flex;
+    & > .image {
         height: 64px;
-        justify-content: center;
         width: 64px;
-
-        img {
-            align-self: center;
-            max-height: 100%;
-            max-width: 100%;
-        }
     }
 
     .info {
@@ -38,12 +30,7 @@
         }
     }
 
-    .quantity {
+    .parts {
         width: 240px;
-
-        & > div {
-            display: flex;
-            justify-content: space-between;
-        }
     }
 }
