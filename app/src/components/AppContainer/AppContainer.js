@@ -1,26 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useContext } from 'react';
 import Alert from 'src/components/Alert/Alert';
 import Menu from 'src/components/Menu/Menu';
 import Modal from 'src/components/Modal/Modal';
 import Routes from 'src/components/Routes/Routes';
-import { getAlertDisplay } from 'src/selectors/alert.selectors';
-import { getModalDisplay } from 'src/selectors/modal.selectors';
+import { AlertContext } from 'src/context/alert.context';
+import { ModalContext } from 'src/context/modal.context';
 
-const AppContainer = ({ alertDisplay, modalDisplay }) => (
-    <>
-        { alertDisplay && <Alert /> }
-        { modalDisplay && <Modal /> }
-        <Menu />
-        <Routes />
-    </>
-);
+const AppContainer = () => {
+    const {isAlertDisplay} = useContext(AlertContext);
+    const {isModalDisplay} = useContext(ModalContext);
 
-const mapStateToProps = state => (
-    {
-        alertDisplay: getAlertDisplay(state),
-        modalDisplay: getModalDisplay(state),
-    }
-);
+    return (
+        <>
+            { isAlertDisplay && <Alert/> }
+            { isModalDisplay && <Modal/> }
+            <Menu/>
+            <Routes/>
+        </>
+    );
+};
 
-export default connect(mapStateToProps)(AppContainer);
+export default AppContainer;

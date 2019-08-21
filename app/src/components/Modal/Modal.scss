@@ -1,26 +1,37 @@
 .modal {
-    background-color: rgba(#000, 0.5);
+  background-color: rgba(#000, 0.5);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  position: fixed;
+  width: 100vw;
+  z-index: 1;
+
+  .container {
+    align-self: center;
+    background-color: #ffffff;
+    border: {
+      color: #000000;
+      radius: 4px;
+      style: solid;
+      width: 1px;
+    }
+    min-width: 280px;
+    padding: 8px;
+  }
+
+  legend {
+    background-color: mediumpurple;
+    color: white;
+    padding: 4px 8px;
+  }
+
+  .content {
+
+  }
+
+  .footer {
     display: flex;
-    height: 100vh;
-    justify-content: center;
-    position: fixed;
-    width: 100vw;
-
-    .content {
-        align-self: center;
-        background-color: #ffffff;
-        border: {
-            color: #000000;
-            radius: 4px;
-            style: solid;
-            width: 1px;
-        }
-        min-width: 280px;
-        padding: 8px;
-    }
-
-    .footer {
-        display: flex;
-        justify-content: flex-end;
-    }
+    justify-content: flex-end;
+  }
 }

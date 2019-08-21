@@ -1,34 +1,35 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { modalHideAction } from 'src/actions/modal.actions';
+import React, { useContext } from 'react';
 import ModalAddPart from 'src/components/ModalAddPart/ModalAddPart';
 import ModalAddProject from 'src/components/ModalAddProject/ModalAddProject';
-import { getModalContent } from 'src/selectors/modal.selectors';
+import { ModalContext } from 'src/context/modal.context';
 import styles from './Modal.scss';
 
-const Modal = ({ content, onCloseHandler }) => {
-    const contentTemplates = {
-        ModalAddPart: <ModalAddPart onCloseHandler={ onCloseHandler } />,
-        ModalAddProject: <ModalAddProject onCloseHandler={ onCloseHandler } />,
+
+const Modal = () => {
+    const {modalContent, hideModal} = useContext(ModalContext);
+    const onCloseHandler = () => hideModal();
+
+    const content = {
+        ModalAddPart: {
+            title: 'Add part',
+            content: <ModalAddPart onCloseHandler={ onCloseHandler }/>
+        },
+        ModalAddProject: {
+            title: 'Add project',
+            content: <ModalAddProject onCloseHandler={ onCloseHandler }/>
+        }
     };
 
     return (
         <div className={ styles.modal }>
-            <div className={ styles.content }>
-                { contentTemplates[content] }
-            </div>
+            <fieldset className={ styles.container }>
+                <legend>{ content[modalContent].title }</legend>
+                <div>
+                    { content[modalContent].content }
+                </div>
+            </fieldset>
         </div>
     );
 };
 
-const mapStateToProps = state => (
-    {
-        content: getModalContent(state),
-    }
-);
-
-const mapDispatchToProps = {
-    onCloseHandler: modalHideAction,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default Modal;

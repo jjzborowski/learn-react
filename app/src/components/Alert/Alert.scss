@@ -4,6 +4,7 @@
   position: fixed;
   top: 0;
   width: 100vw;
+  z-index: 2;
 
   &.success {
     background-color: rgba(green, 0.5);

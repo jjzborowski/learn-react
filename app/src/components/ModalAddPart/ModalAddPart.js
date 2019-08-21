@@ -27,7 +27,10 @@ const ModalAddPart = ({ onSaveHandler, onCloseHandler }) => {
             Add part
             <div className={ modalStyles.footer }>
                 <Button
-                    onClickHandler={ () => onSaveHandler(mockPart) }
+                    onClickHandler={ () => {
+                        onSaveHandler(mockPart);
+                        onCloseHandler();
+                    } }
                     label="Save"
                 />
                 <Button

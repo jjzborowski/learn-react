@@ -1,4 +1,3 @@
-import * as modalActionTypes from 'src/actionTypes/modal.actionTypes';
 import * as actionTypes from 'src/actionTypes/parts.actionTypes';
 
 export const partsListInitAction = data => dispatch => {
@@ -16,8 +15,5 @@ export const partsListAddAction = data => dispatch => {
         payload: {
             data,
         },
-    });
-    dispatch({
-        type: modalActionTypes.MODAL_HIDE,
     });
 };

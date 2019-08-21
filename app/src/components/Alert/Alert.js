@@ -1,15 +1,14 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { alertHideAction } from 'src/actions/alert.actions';
-import {
-    getAlertContent,
-    getAlertType,
-} from 'src/selectors/alert.selectors';
+import React, {
+    useContext,
+    useState
+} from 'react';
 import Button from 'src/ui/Button/Button';
+import { AlertContext } from 'src/context/alert.context';
 import styles from './Alert.scss';
 
-const Alert = ({ onCloseHandler, content, type }) => {
+const Alert = () => {
+    const {alertType, alertContent, hideAlert} = useContext(AlertContext);
     const [ timer, setTimer ] = useState(null);
 
     // useEffect(() => {
@@ -22,17 +21,17 @@ const Alert = ({ onCloseHandler, content, type }) => {
 
     const clickHandler = () => {
         clearTimeout(timer);
-        onCloseHandler();
+        hideAlert();
     };
 
     return (
-        <div className={ classNames(styles.alert, styles[type]) }>
+        <div className={ classNames(styles.alert, styles[alertType]) }>
             <i className="fa fa-times-circle" />
             <i className="fa fa-exclamation-circle" />
             <i className="fa fa-check-circle" />
             <i className="fa fa-info-circle" />
-            <span className={ classNames(styles.icon, styles[type]) } />
-            { content }
+            <span className={ classNames(styles.icon, styles[alertType]) } />
+            { alertContent }
             <Button
                 onClickHandler={ clickHandler }
                 label="X"
@@ -42,15 +41,4 @@ const Alert = ({ onCloseHandler, content, type }) => {
     );
 };
 
-const mapStateToProps = state => (
-    {
-        content: getAlertContent(state),
-        type: getAlertType(state),
-    }
-);
-
-const mapDispatchToProps = {
-    onCloseHandler: alertHideAction,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Alert);
+export default Alert;

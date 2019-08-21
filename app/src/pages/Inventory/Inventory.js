@@ -1,22 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { modalDisplayAction } from 'src/actions/modal.actions';
+import React, { useContext } from 'react';
 import List from 'src/components/PartsList/PartsList';
 import Button from 'src/ui/Button/Button';
+import { ModalContext } from 'src/context/modal.context';
 import styles from './Inventory.scss';
 
-const Inventory = ({ onClickHandler }) => (
-    <div className={ styles.inventory }>
-        <List />
-        <Button
-            onClickHandler={ onClickHandler }
-            label="Add new element"
-        />
-    </div>
-);
+const Inventory = () => {
+    const {showModal} = useContext(ModalContext);
+    const onClickHandler = () => showModal('ModalAddPart');
 
-const mapDispatchToProps = {
-    onClickHandler: () => modalDisplayAction('ModalAddPart'),
+    return (
+        <div className={ styles.inventory }>
+            <List />
+            <Button
+                onClickHandler={ onClickHandler }
+                label="Add new element"
+            />
+        </div>
+    );
 };
 
-export default connect(null, mapDispatchToProps)(Inventory);
+export default Inventory;
