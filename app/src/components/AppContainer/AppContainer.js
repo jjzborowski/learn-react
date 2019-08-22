@@ -7,15 +7,15 @@ import { AlertContext } from 'src/context/alert.context';
 import { ModalContext } from 'src/context/modal.context';
 
 const AppContainer = () => {
-    const {isAlertDisplay} = useContext(AlertContext);
-    const {isModalDisplay} = useContext(ModalContext);
+    const { isAlertDisplay } = useContext(AlertContext);
+    const { isModalDisplay } = useContext(ModalContext);
 
     return (
         <>
-            { isAlertDisplay && <Alert/> }
-            { isModalDisplay && <Modal/> }
-            <Menu/>
-            <Routes/>
+            { isAlertDisplay && <Alert /> }
+            { isModalDisplay && <Modal /> }
+            <Menu />
+            <Routes />
         </>
     );
 };

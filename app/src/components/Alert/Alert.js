@@ -1,14 +1,14 @@
 import classNames from 'classnames';
 import React, {
     useContext,
-    useState
+    useState,
 } from 'react';
-import Button from 'src/ui/Button/Button';
 import { AlertContext } from 'src/context/alert.context';
+import Button from 'src/ui/Button/Button';
 import styles from './Alert.scss';
 
 const Alert = () => {
-    const {alertType, alertContent, hideAlert} = useContext(AlertContext);
+    const { alertType, alertContent, hideAlert } = useContext(AlertContext);
     const [ timer, setTimer ] = useState(null);
 
     // useEffect(() => {

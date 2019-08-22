@@ -1,11 +1,11 @@
+import classNames from 'classnames';
 import React from 'react';
 import styles from './Label.scss';
-import classNames from 'classnames';
 
-const Label = ({text}) => {
+const Label = ({ text }) => {
     return (
-        <label className={classNames(styles.label)}>
-            {text}
+        <label className={ classNames(styles.label) }>
+            { text }
         </label>
     );
 };

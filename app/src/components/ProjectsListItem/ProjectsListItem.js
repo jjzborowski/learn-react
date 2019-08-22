@@ -1,5 +1,4 @@
 import React from 'react';
-import ProjectsListItemParts from 'src/components/ProjectsListItemPart/ProjectsListItemPart';
 import styles from './ProjectsListItem.scss';
 
 const ProjectsListItem = ({ info, image, parts }) => {
@@ -19,15 +18,7 @@ const ProjectsListItem = ({ info, image, parts }) => {
                 <div>Added: { added.toLocaleString() }</div>
                 <div>Last modified: { modified.toLocaleString() }</div>
                 <div>{ info.description }</div>
-            </div>
-            <div className={ styles.parts }>
-                { Object.values(parts)
-                    .map(part => (
-                        <ProjectsListItemParts
-                            key={ part.id }
-                            { ...part }
-                        />
-                    )) }
+                <div>{ parts.amount }</div>
             </div>
         </div>
     );

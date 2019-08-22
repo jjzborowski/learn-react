@@ -4,20 +4,19 @@ import ModalAddProject from 'src/components/ModalAddProject/ModalAddProject';
 import { ModalContext } from 'src/context/modal.context';
 import styles from './Modal.scss';
 
-
 const Modal = () => {
-    const {modalContent, hideModal} = useContext(ModalContext);
+    const { modalContent, hideModal } = useContext(ModalContext);
     const onCloseHandler = () => hideModal();
 
     const content = {
         ModalAddPart: {
             title: 'Add part',
-            content: <ModalAddPart onCloseHandler={ onCloseHandler }/>
+            content: <ModalAddPart onCloseHandler={ onCloseHandler } />,
         },
         ModalAddProject: {
             title: 'Add project',
-            content: <ModalAddProject onCloseHandler={ onCloseHandler }/>
-        }
+            content: <ModalAddProject onCloseHandler={ onCloseHandler } />,
+        },
     };
 
     return (

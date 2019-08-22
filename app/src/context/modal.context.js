@@ -8,8 +8,8 @@ export const ModalContext = React.createContext({
 });
 
 const ModalContextProvider = ({ children }) => {
-    const [providerIsDisplay, setProviderIsDisplay] = useState(false);
-    const [providerContent, setProviderContent] = useState(null);
+    const [ providerIsDisplay, setProviderIsDisplay ] = useState(false);
+    const [ providerContent, setProviderContent ] = useState(null);
 
     const providerShowModal = content => {
         setProviderContent(content);
@@ -26,7 +26,7 @@ const ModalContextProvider = ({ children }) => {
                 isModalDisplay: providerIsDisplay,
                 modalContent: providerContent,
                 showModal: providerShowModal,
-                hideModal: providerHideModal
+                hideModal: providerHideModal,
             } }
         >
             { children }

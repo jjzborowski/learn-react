@@ -9,7 +9,7 @@ const listDataReducer = handleActions({
             ...state,
             [payload.data.id]: payload.data,
         }
-    )
+    ),
 }, {});
 
 const partsReducer = combineReducers({

@@ -9,9 +9,9 @@ export const AlertContext = React.createContext({
 });
 
 const AlertContextProvider = ({ children }) => {
-    const [providerIsDisplay, setProviderIsDisplay] = useState(false);
-    const [providerType, setProviderType] = useState(null);
-    const [providerMessage, setProviderMessage] = useState(null);
+    const [ providerIsDisplay, setProviderIsDisplay ] = useState(false);
+    const [ providerType, setProviderType ] = useState(null);
+    const [ providerMessage, setProviderMessage ] = useState(null);
 
     const providerShowAlert = (type, message) => {
         setProviderType(type);
@@ -30,7 +30,7 @@ const AlertContextProvider = ({ children }) => {
                 alertType: providerType,
                 alertContent: providerMessage,
                 showAlert: providerShowAlert,
-                hideAlert: providerHideAlert
+                hideAlert: providerHideAlert,
             } }
         >
             { children }

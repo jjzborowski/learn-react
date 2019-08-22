@@ -5,6 +5,6 @@ export const menuInitAction = data => dispatch => {
         type: actionTypes.MENU_INIT,
         payload: {
             data,
-        }
+        },
     });
 };

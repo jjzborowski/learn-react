@@ -1,25 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import ProjectsListItem from 'src/components/ProjectsListItem/ProjectsListItem';
-import { getProjectsData } from 'src/selectors/projects.selectors';
 import styles from './ProjectsList.scss';
 
-const ProjectsList = ({ items }) => (
+const ProjectsList = ({ projects }) => (
     <div className={ styles.projects }>
-        { Object.values(items)
-            .map(item => (
+        { projects.map(project => (
+            <>
                 <ProjectsListItem
-                    key={ item.id }
-                    { ...item }
+                    key={ project.id }
+                    { ...project }
                 />
-            )) }
+            </>
+        )) }
     </div>
 );
 
-const mapStateToProps = state => (
-    {
-        items: getProjectsData(state),
-    }
-);
-
-export default connect(mapStateToProps)(ProjectsList);
+export default ProjectsList;

@@ -1,0 +1,23 @@
+.select {
+    border: {
+        color: #000000;
+        style: solid;
+        width: 1px;
+    }
+
+    .options {
+        background-color: #ffffff;
+        border: {
+            color: #000000;
+            style: solid;
+            width: 1px;
+        }
+        position: absolute;
+        top: 100%;
+        z-index: 1;
+
+        .option {
+
+        }
+    }
+}
