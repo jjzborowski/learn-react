@@ -1,18 +1,22 @@
 import React from 'react';
-import ProjectsListItem from 'src/components/ProjectsListItem/ProjectsListItem';
-import styles from './ProjectsList.scss';
+import List from 'src/ui/List/List';
+import ListItem from 'src/ui/ListItem/ListItem';
 
 const ProjectsList = ({ projects }) => (
-    <div className={ styles.projects }>
+    <List>
         { projects.map(project => (
-            <>
-                <ProjectsListItem
-                    key={ project.id }
-                    { ...project }
-                />
-            </>
+            <ListItem
+                key={ project.id }
+                image={ project.image }
+            >
+                <div>{ project.info.title }</div>
+                <div>Added: { project.info.added.toLocaleString() }</div>
+                <div>Last modified: { project.info.modified.toLocaleString() }</div>
+                <div>{ project.info.description }</div>
+                <div>{ project.parts.amount }</div>
+            </ListItem>
         )) }
-    </div>
+    </List>
 );
 
 export default ProjectsList;

@@ -1,3 +1,7 @@
 .pagination {
+    display: flex;
 
+    div {
+        cursor: pointer;
+    }
 }

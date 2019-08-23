@@ -1,0 +1,4 @@
+export const STORE_PROJECTS = 'STORE_PROJECTS';
+export const ADD_PROJECT = 'ADD_PROJECT';
+export const REMOVE_PROJECT = 'REMOVE_PROJECT';
+export const MODIFY_PROJECT = 'MODIFY_PROJECT';

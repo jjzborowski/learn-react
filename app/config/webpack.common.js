@@ -14,18 +14,18 @@ module.exports = {
                 test: /\.svg$/,
                 use: [ '@svgr/webpack' ],
             },
-            {
-                test: /\.(png|jpg|gif|svg)$/,
-                include: [ path.join(__dirname, 'src/images') ],
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            outputPath: 'images',
-                        },
-                    },
-                ],
-            },
+            // {
+            //     test: /\.(png|jpg|gif|svg)$/,
+            //     include: [ path.join(__dirname, 'src/images') ],
+            //     use: [
+            //         {
+            //             loader: 'file-loader',
+            //             options: {
+            //                 outputPath: 'images',
+            //             },
+            //         },
+            //     ],
+            // },
             {
                 test: /\.(js|jsx|ts|tsx)$/,
                 use: {
@@ -36,7 +36,7 @@ module.exports = {
                 },
             },
             {
-                test: /\.scss$/,
+                test: /\.(scss|css)$/,
                 use: [
                     { loader: 'style-loader' }, // creates style nodes from JS strings
                     {
@@ -50,6 +50,31 @@ module.exports = {
                     }, // translates CSS into CommonJS
                     { loader: 'sass-loader' }, // compiles Sass to CSS
                 ],
+            },
+            {
+                test: /\.(png|gif|jpg|cur)$/i,
+                loader: 'url-loader',
+                options: { limit: 8192 },
+            },
+            {
+                test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    mimetype: 'application/font-woff2',
+                },
+            },
+            {
+                test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    mimetype: 'application/font-woff',
+                },
+            },
+            {
+                test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+                loader: 'file-loader',
             },
         ],
     },
