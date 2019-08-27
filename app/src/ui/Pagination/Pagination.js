@@ -3,8 +3,6 @@ import styles from './Pagination.scss';
 
 const Pagination = ({ onClickHandler, listLength, perPage }) => {
     const pages = [];
-    console.log(listLength);
-    console.log(perPage);
 
     for (let i = 0; i <= listLength / perPage; i += 1) {
         pages.push(<div

@@ -1,5 +1,6 @@
 import React, {
     useContext,
+    useEffect,
     useState,
 } from 'react';
 import { connect } from 'react-redux';
@@ -11,8 +12,9 @@ import {
     viewModeOptions,
 } from 'src/constants/viewMode';
 import { ModalContext } from 'src/context/modal.context';
-import { getProjectsData } from 'src/selectors/projects.selectors';
+import { getProjectsData } from 'src/redux/selectors/projects.selectors';
 import Button from 'src/ui/Button/Button';
+import ControlPanel from 'src/ui/ControlPanel/ControlPanel';
 import Pagination from 'src/ui/Pagination/Pagination';
 import Select from 'src/ui/Select/Select';
 import compare from 'src/utils/compare';
@@ -20,24 +22,26 @@ import styles from './Projects.scss';
 
 const Projects = ({ projects }) => {
     const { showModal } = useContext(ModalContext);
-    const [ orderBySelected, setOrderBySelected ] = useState(0);
-    const [ viewModeSelected, setViewModeSelected ] = useState(0);
-    const [ displayAmountSelected, setDisplayAmountSelected ] = useState(0);
+    const [ orderBySelected, setOrderBySelected ] = useState('info.added:desc');
+    const [ viewModeSelected, setViewModeSelected ] = useState('list');
+    const [ displayAmountSelected, setDisplayAmountSelected ] = useState(10);
     const [ pageSelected, setPageSelected ] = useState(0);
-
-    const indexStart = pageSelected * displayAmountOptions[displayAmountSelected].value;
-    const indexEnd = pageSelected
-        * displayAmountOptions[displayAmountSelected].value
-        + displayAmountOptions[displayAmountSelected].value;
-    const projectsPerPage = projects.sort((a, b) => compare(a, b, projectsOrderOptions[orderBySelected].value))
+    const order = projectsOrderOptions[orderBySelected].value;
+    const displayAmount = displayAmountOptions[displayAmountSelected].value;
+    const viewMode = viewModeOptions[viewModeSelected].value;
+    const indexStart = pageSelected * displayAmount;
+    const indexEnd = pageSelected * displayAmount + displayAmount;
+    const projectsPerPage = projects
+        .sort((a, b) => compare(a, b, order))
         .slice(indexStart, indexEnd);
-    console.log(projectsPerPage);
-    console.log(indexStart);
-    console.log(indexEnd);
     const viewModeTemplates = {
         list: <ProjectsList projects={ projectsPerPage } />,
         tiles: <ProjectsTiles projects={ projectsPerPage } />,
     };
+
+    useEffect(() => {
+        onPageSelectHandler(0);
+    }, [ displayAmountSelected ]);
 
     const onShowModalClickHandler = () => showModal('ModalAddProject');
 
@@ -59,7 +63,7 @@ const Projects = ({ projects }) => {
 
     return (
         <div className={ styles.projects }>
-            <div>
+            <ControlPanel>
                 <Select
                     options={ projectsOrderOptions }
                     selected={ orderBySelected }
@@ -75,17 +79,17 @@ const Projects = ({ projects }) => {
                     selected={ displayAmountSelected }
                     onSelectHandler={ onDisplayAmountSelectHandler }
                 />
-            </div>
+                <Button
+                    onClickHandler={ onShowModalClickHandler }
+                    label="Add new project"
+                />
+            </ControlPanel>
             <Pagination
                 onClickHandler={ onPageSelectHandler }
                 listLength={ projects.length }
-                perPage={ displayAmountOptions[displayAmountSelected].value }
+                perPage={ displayAmount }
             />
-            { viewModeTemplates[viewModeOptions[viewModeSelected].value] }
-            <Button
-                onClickHandler={ onShowModalClickHandler }
-                label="Add new project"
-            />
+            { viewModeTemplates[viewMode] }
         </div>
     );
 };

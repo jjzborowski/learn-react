@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import ModalAddPart from 'src/components/ModalAddPart/ModalAddPart';
-import ModalAddProject from 'src/components/ModalAddProject/ModalAddProject';
+import ModalAddPart from 'src/components/PartAddModal/PartAddModal';
+import ModalAddProject from 'src/components/ProjectAddModal/ProjectAddModal';
 import { ModalContext } from 'src/context/modal.context';
 import styles from './Modal.scss';
 

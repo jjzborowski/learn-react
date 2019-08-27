@@ -1,8 +1,9 @@
 import React from 'react';
 import Tile from 'src/ui/Tile/Tile';
+import Tiles from 'src/ui/Tiles/Tiles';
 
 const ProjectsTiles = ({ projects }) => (
-    <>
+    <Tiles>
         { projects.map(project => (
             <Tile
                 key={ project.id }
@@ -13,7 +14,7 @@ const ProjectsTiles = ({ projects }) => (
                 type="small"
             />
         )) }
-    </>
+    </Tiles>
 );
 
 export default ProjectsTiles;
