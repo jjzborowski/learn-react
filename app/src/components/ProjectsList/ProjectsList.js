@@ -2,12 +2,13 @@ import React from 'react';
 import List from 'src/ui/List/List';
 import ListItem from 'src/ui/ListItem/ListItem';
 
-const ProjectsList = ({ projects }) => (
+const ProjectsList = ({ projects, onRemoveHandler }) => (
     <List>
         { projects.map(project => (
             <ListItem
                 key={ project.id }
                 image={ project.image }
+                onRemoveHandler={() => onRemoveHandler(project.id)}
             >
                 <div>{ project.info.title }</div>
                 <div>Added: { project.info.added.toLocaleString() }</div>

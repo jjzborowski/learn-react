@@ -1,19 +1,27 @@
 import * as actionTypes from 'src/redux/actionTypes/projects.actionTypes';
 
-export const storeProjectsAction = data => dispatch => {
+export const storeProjectsAction = projectsData => dispatch => {
     dispatch({
         type: actionTypes.STORE_PROJECTS,
-        payload: {
-            data,
-        },
+        projectsData,
     });
 };
 
-export const addProjectAction = data => dispatch => {
+export const addProjectAction = projectData => dispatch => {
     dispatch({
         type: actionTypes.ADD_PROJECT,
-        payload: {
-            data,
-        },
+        projectData,
+    });
+};
+
+export const removeProjectAction = projectId => (dispatch, getState) => {
+    const state = getState();
+    const projectsData = {...state.projects.data};
+
+    delete projectsData[projectId];
+
+    dispatch({
+        type: actionTypes.REMOVE_PROJECT,
+        projectsData,
     });
 };

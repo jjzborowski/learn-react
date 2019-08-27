@@ -34,7 +34,7 @@ const Alert = () => {
             { alertContent }
             <Button
                 onClickHandler={ clickHandler }
-                label="X"
+                label={<i className="fa fa-times" />}
                 type="ghost"
             />
         </div>

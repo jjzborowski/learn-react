@@ -19,11 +19,11 @@ const useClickOutside = (elementReference, clickOutsideHandler) => {
     });
 };
 
-const ClickOutside = props => {
+const ClickOutside = ({className, clickOutsideHandler, children}) => {
     const elementReference = useRef(null);
-    useClickOutside(elementReference, props.clickOutsideHandler);
+    useClickOutside(elementReference, clickOutsideHandler);
 
-    return <div ref={ elementReference }>{ props.children }</div>;
+    return <div className={className} ref={ elementReference }>{ children }</div>;
 };
 
 ClickOutside.propTypes = {

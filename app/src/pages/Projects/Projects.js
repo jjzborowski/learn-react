@@ -18,9 +18,14 @@ import ControlPanel from 'src/ui/ControlPanel/ControlPanel';
 import Pagination from 'src/ui/Pagination/Pagination';
 import Select from 'src/ui/Select/Select';
 import compare from 'src/utils/compare';
+import ProjectAddModal from 'src/components/ProjectAddModal/ProjectAddModal';
+import {
+    addProjectAction,
+    removeProjectAction,
+} from 'src/redux/actions/projects.actions';
 import styles from './Projects.scss';
 
-const Projects = ({ projects }) => {
+const Projects = ({ projects, addProject, removeProject }) => {
     const { showModal } = useContext(ModalContext);
     const [ orderBySelected, setOrderBySelected ] = useState('info.added:desc');
     const [ viewModeSelected, setViewModeSelected ] = useState('list');
@@ -35,15 +40,15 @@ const Projects = ({ projects }) => {
         .sort((a, b) => compare(a, b, order))
         .slice(indexStart, indexEnd);
     const viewModeTemplates = {
-        list: <ProjectsList projects={ projectsPerPage } />,
-        tiles: <ProjectsTiles projects={ projectsPerPage } />,
+        list: <ProjectsList projects={ projectsPerPage } onRemoveHandler={removeProject} />,
+        tiles: <ProjectsTiles projects={ projectsPerPage } onRemoveHandler={() => {}} />,
     };
 
     useEffect(() => {
         onPageSelectHandler(0);
     }, [ displayAmountSelected ]);
 
-    const onShowModalClickHandler = () => showModal('ModalAddProject');
+    const onShowModalClickHandler = () => showModal('Add new project', <ProjectAddModal />, addProject);
 
     const onOrderSelectHandler = index => {
         setOrderBySelected(index);
@@ -100,4 +105,9 @@ const mapStateToProps = state => (
     }
 );
 
-export default connect(mapStateToProps)(Projects);
+const mapDispatchToProps = {
+    addProject: addProjectAction,
+    removeProject: removeProjectAction,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);

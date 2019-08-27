@@ -3,12 +3,13 @@ import List from 'src/ui/List/List';
 import ListItem from 'src/ui/ListItem/ListItem';
 import styles from './PartsList.scss';
 
-const PartsList = ({ parts }) => (
+const PartsList = ({ parts, onRemoveHandler }) => (
     <List>
         { parts.map(part => (
             <ListItem
                 key={ part.id }
                 image={ part.image }
+                onRemoveHandler={() => onRemoveHandler(part.id)}
             >
                 <div className={ styles.info }>
                     <div className={ styles.number }>

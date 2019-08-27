@@ -1,19 +1,27 @@
 import * as actionTypes from 'src/redux/actionTypes/parts.actionTypes';
 
-export const storePartsAction = data => dispatch => {
+export const storePartsAction = partsData => dispatch => {
     dispatch({
         type: actionTypes.STORE_PARTS,
-        payload: {
-            data,
-        },
+        partsData,
     });
 };
 
-export const addPartAction = data => dispatch => {
+export const addPartAction = partData => dispatch => {
     dispatch({
         type: actionTypes.ADD_PART,
-        payload: {
-            data,
-        },
+        partData,
+    });
+};
+
+export const removePartAction = partId => (dispatch, getState) => {
+    const state = getState();
+    const partsData = {...state.parts.data};
+
+    delete partsData[partId];
+
+    dispatch({
+        type: actionTypes.REMOVE_PART,
+        partsData,
     });
 };

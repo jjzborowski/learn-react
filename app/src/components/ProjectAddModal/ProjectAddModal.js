@@ -37,20 +37,6 @@ const ProjectAddModal = ({ onSaveHandler, onCloseHandler }) => {
                     <hr />
                 </form>
             </div>
-            <div className={ modalStyles.footer }>
-                <Button
-                    onClickHandler={ () => {
-                        onSaveHandler(mockPart);
-                        onCloseHandler();
-                    } }
-                    label="Save"
-                />
-                <Button
-                    onClickHandler={ onCloseHandler }
-                    label="Cancel"
-                    type="secondary"
-                />
-            </div>
         </div>
     );
 };

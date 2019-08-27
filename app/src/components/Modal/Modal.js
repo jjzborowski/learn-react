@@ -1,32 +1,35 @@
 import React, { useContext } from 'react';
-import ModalAddPart from 'src/components/PartAddModal/PartAddModal';
-import ModalAddProject from 'src/components/ProjectAddModal/ProjectAddModal';
 import { ModalContext } from 'src/context/modal.context';
+import Button from 'src/ui/Button/Button';
+import ClickOutside from 'src/utils/clickOutside';
 import styles from './Modal.scss';
 
 const Modal = () => {
-    const { modalContent, hideModal } = useContext(ModalContext);
+    const { modalTitle, modalContent, modalCallback, hideModal } = useContext(ModalContext);
     const onCloseHandler = () => hideModal();
-
-    const content = {
-        ModalAddPart: {
-            title: 'Add part',
-            content: <ModalAddPart onCloseHandler={ onCloseHandler } />,
-        },
-        ModalAddProject: {
-            title: 'Add project',
-            content: <ModalAddProject onCloseHandler={ onCloseHandler } />,
-        },
-    };
 
     return (
         <div className={ styles.modal }>
-            <fieldset className={ styles.container }>
-                <legend>{ content[modalContent].title }</legend>
-                <div>
-                    { content[modalContent].content }
+            <ClickOutside className={ styles.container } clickOutsideHandler={onCloseHandler}>
+                <div className={styles.title}>{ modalTitle }</div>
+                <div className={styles.content}>
+                    { modalContent }
                 </div>
-            </fieldset>
+                <div className={ styles.footer }>
+                    <Button
+                        onClickHandler={ () => {
+                            modalCallback();
+                            onCloseHandler();
+                        } }
+                        label="Save"
+                    />
+                    <Button
+                        onClickHandler={ onCloseHandler }
+                        label="Cancel"
+                        type="secondary"
+                    />
+                </div>
+            </ClickOutside>
         </div>
     );
 };

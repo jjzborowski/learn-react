@@ -17,9 +17,14 @@ import ControlPanel from 'src/ui/ControlPanel/ControlPanel';
 import Pagination from 'src/ui/Pagination/Pagination';
 import Select from 'src/ui/Select/Select';
 import compare from 'src/utils/compare';
+import PartAddModal from 'src/components/PartAddModal/PartAddModal';
+import {
+    addPartAction,
+    removePartAction,
+} from 'src/redux/actions/parts.actions';
 import styles from './Inventory.scss';
 
-const Inventory = ({ parts }) => {
+const Inventory = ({ parts, addPart, removePart }) => {
     const { showModal } = useContext(ModalContext);
     const [ orderBySelected, setOrderBySelected ] = useState('info.name:desc');
     const [ viewModeSelected, setViewModeSelected ] = useState('list');
@@ -34,11 +39,11 @@ const Inventory = ({ parts }) => {
         .sort((a, b) => compare(a, b, order))
         .slice(indexStart, indexEnd);
     const viewModeTemplates = {
-        list: <PartsList parts={ partsPerPage } />,
+        list: <PartsList parts={ partsPerPage } onRemoveHandler={removePart} />,
         tiles: <PartsTiles parts={ partsPerPage } />,
     };
 
-    const onShowModalClickHandler = () => showModal('ModalAddPart');
+    const onShowModalClickHandler = () => showModal('Add new part', <PartAddModal />, addPart);
 
     const onOrderSelectHandler = index => {
         setOrderBySelected(index);
@@ -95,4 +100,9 @@ const mapStateToProps = state => (
     }
 );
 
-export default connect(mapStateToProps)(Inventory);
+const mapDispatchToProps = {
+    addPart: addPartAction,
+    removePart: removePartAction
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inventory);
