@@ -16,7 +16,7 @@ export const addProjectAction = projectData => dispatch => {
 
 export const removeProjectAction = projectId => (dispatch, getState) => {
     const state = getState();
-    const projectsData = {...state.projects.data};
+    const projectsData = { ...state.projects.data };
 
     delete projectsData[projectId];
 

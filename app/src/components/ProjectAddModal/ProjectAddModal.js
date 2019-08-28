@@ -2,12 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import modalStyles from 'src/components/Modal/Modal.scss';
 import { addProjectAction } from 'src/redux/actions/projects.actions';
-import Button from 'src/ui/Button/Button';
 import Input from 'src/ui/Input/Input';
 import Label from 'src/ui/Label/Label';
 import uuid from 'uuid';
 
-const ProjectAddModal = ({ onSaveHandler, onCloseHandler }) => {
+const ProjectAddModal = () => {
     const id = uuid();
     const mockPart = {
         id: id,
@@ -40,7 +39,9 @@ const ProjectAddModal = ({ onSaveHandler, onCloseHandler }) => {
         </div>
     );
 };
+
 const mapDispatchToProps = {
     onSaveHandler: addProjectAction,
 };
+
 export default connect(null, mapDispatchToProps)(ProjectAddModal);

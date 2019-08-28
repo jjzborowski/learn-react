@@ -1,8 +1,10 @@
 import React, {
     useContext,
+    useEffect,
     useState,
 } from 'react';
 import { connect } from 'react-redux';
+import PartAddModal from 'src/components/PartAddModal/PartAddModal';
 import PartsList from 'src/components/PartsList/PartsList';
 import PartsTiles from 'src/components/PartsTiles/PartsTiles';
 import {
@@ -11,17 +13,16 @@ import {
     viewModeOptions,
 } from 'src/constants/viewMode';
 import { ModalContext } from 'src/context/modal.context';
+import {
+    addPartAction,
+    removePartAction,
+} from 'src/redux/actions/parts.actions';
 import { getPartsData } from 'src/redux/selectors/parts.selectors';
 import Button from 'src/ui/Button/Button';
 import ControlPanel from 'src/ui/ControlPanel/ControlPanel';
 import Pagination from 'src/ui/Pagination/Pagination';
 import Select from 'src/ui/Select/Select';
 import compare from 'src/utils/compare';
-import PartAddModal from 'src/components/PartAddModal/PartAddModal';
-import {
-    addPartAction,
-    removePartAction,
-} from 'src/redux/actions/parts.actions';
 import styles from './Inventory.scss';
 
 const Inventory = ({ parts, addPart, removePart }) => {
@@ -38,12 +39,24 @@ const Inventory = ({ parts, addPart, removePart }) => {
     const partsPerPage = parts
         .sort((a, b) => compare(a, b, order))
         .slice(indexStart, indexEnd);
-    const viewModeTemplates = {
-        list: <PartsList parts={ partsPerPage } onRemoveHandler={removePart} />,
-        tiles: <PartsTiles parts={ partsPerPage } />,
-    };
 
-    const onShowModalClickHandler = () => showModal('Add new part', <PartAddModal />, addPart);
+    useEffect(() => {
+        onPageSelectHandler(0);
+    }, [ displayAmountSelected ]);
+
+    const onShowModalClickHandler = () => showModal({
+        title: 'Add new part',
+        content: <PartAddModal />,
+        confirmButtonLabel: 'Add',
+        callback: addPart,
+    });
+
+    const onRemoveHandler = partId => showModal({
+        title: 'Add new part',
+        content: 'Do you want to remove this part?',
+        confirmButtonLabel: 'Remove',
+        callback: () => removePart(partId),
+    });
 
     const onOrderSelectHandler = index => {
         setOrderBySelected(index);
@@ -59,6 +72,17 @@ const Inventory = ({ parts, addPart, removePart }) => {
 
     const onPageSelectHandler = index => {
         setPageSelected(index);
+    };
+
+    const viewModeTemplates = {
+        list: <PartsList
+            parts={ partsPerPage }
+            onRemoveHandler={ onRemoveHandler }
+        />,
+        tiles: <PartsTiles
+            parts={ partsPerPage }
+            onRemoveHandler={ onRemoveHandler }
+        />,
     };
 
     return (
@@ -102,7 +126,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = {
     addPart: addPartAction,
-    removePart: removePartAction
+    removePart: removePartAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inventory);

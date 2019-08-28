@@ -9,7 +9,7 @@ const PartsList = ({ parts, onRemoveHandler }) => (
             <ListItem
                 key={ part.id }
                 image={ part.image }
-                onRemoveHandler={() => onRemoveHandler(part.id)}
+                onRemoveHandler={ () => onRemoveHandler(part.id) }
             >
                 <div className={ styles.info }>
                     <div className={ styles.number }>

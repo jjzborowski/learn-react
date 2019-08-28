@@ -4,6 +4,7 @@ import React, {
     useState,
 } from 'react';
 import { connect } from 'react-redux';
+import ProjectAddModal from 'src/components/ProjectAddModal/ProjectAddModal';
 import ProjectsList from 'src/components/ProjectsList/ProjectsList';
 import ProjectsTiles from 'src/components/ProjectsTiles/ProjectsTiles';
 import {
@@ -12,17 +13,16 @@ import {
     viewModeOptions,
 } from 'src/constants/viewMode';
 import { ModalContext } from 'src/context/modal.context';
+import {
+    addProjectAction,
+    removeProjectAction,
+} from 'src/redux/actions/projects.actions';
 import { getProjectsData } from 'src/redux/selectors/projects.selectors';
 import Button from 'src/ui/Button/Button';
 import ControlPanel from 'src/ui/ControlPanel/ControlPanel';
 import Pagination from 'src/ui/Pagination/Pagination';
 import Select from 'src/ui/Select/Select';
 import compare from 'src/utils/compare';
-import ProjectAddModal from 'src/components/ProjectAddModal/ProjectAddModal';
-import {
-    addProjectAction,
-    removeProjectAction,
-} from 'src/redux/actions/projects.actions';
 import styles from './Projects.scss';
 
 const Projects = ({ projects, addProject, removeProject }) => {
@@ -39,16 +39,24 @@ const Projects = ({ projects, addProject, removeProject }) => {
     const projectsPerPage = projects
         .sort((a, b) => compare(a, b, order))
         .slice(indexStart, indexEnd);
-    const viewModeTemplates = {
-        list: <ProjectsList projects={ projectsPerPage } onRemoveHandler={removeProject} />,
-        tiles: <ProjectsTiles projects={ projectsPerPage } onRemoveHandler={() => {}} />,
-    };
 
     useEffect(() => {
         onPageSelectHandler(0);
     }, [ displayAmountSelected ]);
 
-    const onShowModalClickHandler = () => showModal('Add new project', <ProjectAddModal />, addProject);
+    const onShowModalClickHandler = () => showModal({
+        title: 'Add new project',
+        content: <ProjectAddModal />,
+        confirmButtonLabel: 'Add',
+        callback: addProject,
+    });
+
+    const onRemoveHandler = projectId => showModal({
+        title: 'Remove part',
+        content: 'Do you want to remove this project?',
+        confirmButtonLabel: 'Remove',
+        callback: () => removeProject(projectId),
+    });
 
     const onOrderSelectHandler = index => {
         setOrderBySelected(index);
@@ -64,6 +72,17 @@ const Projects = ({ projects, addProject, removeProject }) => {
 
     const onPageSelectHandler = index => {
         setPageSelected(index);
+    };
+
+    const viewModeTemplates = {
+        list: <ProjectsList
+            projects={ projectsPerPage }
+            onRemoveHandler={ onRemoveHandler }
+        />,
+        tiles: <ProjectsTiles
+            projects={ projectsPerPage }
+            onRemoveHandler={ onRemoveHandler }
+        />,
     };
 
     return (

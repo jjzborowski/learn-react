@@ -8,7 +8,7 @@ const ProjectsList = ({ projects, onRemoveHandler }) => (
             <ListItem
                 key={ project.id }
                 image={ project.image }
-                onRemoveHandler={() => onRemoveHandler(project.id)}
+                onRemoveHandler={ () => onRemoveHandler(project.id) }
             >
                 <div>{ project.info.title }</div>
                 <div>Added: { project.info.added.toLocaleString() }</div>

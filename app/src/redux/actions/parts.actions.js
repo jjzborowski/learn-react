@@ -16,7 +16,7 @@ export const addPartAction = partData => dispatch => {
 
 export const removePartAction = partId => (dispatch, getState) => {
     const state = getState();
-    const partsData = {...state.parts.data};
+    const partsData = { ...state.parts.data };
 
     delete partsData[partId];
 
